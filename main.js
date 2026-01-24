@@ -3,68 +3,123 @@ import { initBinaryBackground } from './binary-bg.js';
 
 const app = document.querySelector('#app');
 
-// Definition for the 3D Bug SVG
+// Definition for the Realistic 3D Bug SVG
 const bugIconSVG = `
-    <svg class="bug-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; vertical-align:middle; width:64px; height:64px;">
+    <svg class="bug-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; vertical-align:middle; width:64px; height:64px;">
         <defs>
-            <radialGradient id="bodyGradient" cx="30%" cy="30%" r="80%" fx="40%" fy="40%">
-                <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
-                <stop offset="40%" style="stop-color:#ff0000;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#990000;stop-opacity:1" />
+            <!-- Enhanced Body Gradient with Multiple Stops -->
+            <radialGradient id="bodyGradient" cx="35%" cy="30%" r="100%">
+                <stop offset="0%" style="stop-color:#ff8080;stop-opacity:1" />
+                <stop offset="20%" style="stop-color:#ff4444;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#cc0000;stop-opacity:1" />
+                <stop offset="80%" style="stop-color:#990000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#660000;stop-opacity:1" />
             </radialGradient>
-            <linearGradient id="headGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                 <stop offset="0%" style="stop-color:#4a4a4a;stop-opacity:1" />
-                 <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
-            </linearGradient>
-            <filter id="inset-shadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feComponentTransfer in=SourceAlpha>
-                    <feFuncA type="table" tableValues="1 0" />
+            
+            <!-- Wing Cover Gradient -->
+            <radialGradient id="wingGradient" cx="40%" cy="35%" r="90%">
+                <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:0.9" />
+                <stop offset="60%" style="stop-color:#cc0000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#800000;stop-opacity:1" />
+            </radialGradient>
+            
+            <!-- Head Gradient -->
+            <radialGradient id="headGradient" cx="40%" cy="30%" r="70%">
+                <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+                <stop offset="70%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+            </radialGradient>
+            
+            <!-- Spot Gradient for depth -->
+            <radialGradient id="spotGradient" cx="40%" cy="40%" r="60%">
+                <stop offset="0%" style="stop-color:#000;stop-opacity:0.9" />
+                <stop offset="100%" style="stop-color:#1a0000;stop-opacity:1" />
+            </radialGradient>
+            
+            <!-- Drop Shadow -->
+            <filter id="dropShadow">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+                <feOffset dx="0" dy="1" result="offsetblur"/>
+                <feComponentTransfer>
+                    <feFuncA type="linear" slope="0.3"/>
                 </feComponentTransfer>
-                <feGaussianBlur stdDeviation="1"/>
-                <feOffset dx="0" dy="2" result="offsetblur"/>
-                <feFlood flood-color="rgba(0,0,0,0.5)" result="color"/>
-                <feComposite in2="offsetblur" operator="in"/>
-                <feComposite in2="SourceAlpha" operator="in" />
                 <feMerge>
-                    <feMergeNode in="SourceGraphic" />
-                    <feMergeNode />
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
                 </feMerge>
             </filter>
         </defs>
         
-        <!-- Legs (Thicker & Darker) -->
-        <path d="M19 7L22 5" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M19 12L23 12" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M19 17L22 19" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M5 7L2 5" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M5 12L1 12" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M5 17L2 19" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Shadow base -->
+        <ellipse cx="16" cy="28" rx="10" ry="2" fill="#000" opacity="0.15"/>
         
-        <!-- Antennae -->
-        <path d="M10 4L8 1" stroke="#222" stroke-width="2" stroke-linecap="round"/>
-        <path d="M14 4L16 1" stroke="#222" stroke-width="2" stroke-linecap="round"/>
-
-        <!-- Body with Radial 3D Fill -->
-        <ellipse cx="12" cy="13" rx="8.5" ry="9.5" fill="url(#bodyGradient)" />
+        <!-- Legs with joints (Left side) - Enhanced visibility -->
+        <g stroke="#666" stroke-width="1.5" stroke-linecap="round" fill="none" filter="url(#dropShadow)" style="filter: drop-shadow(0 0 2px rgba(6, 182, 212, 0.4));">
+            <!-- Front leg -->
+            <path d="M8 11 L5 9 L3 7"/>
+            <!-- Middle leg -->
+            <path d="M7 16 L4 16 L2 15"/>
+            <!-- Back leg -->
+            <path d="M8 21 L5 23 L3 25"/>
+        </g>
         
-        <!-- Glossy Highlight (Reflection) -->
-        <path d="M12 5.5 C 9 5.5, 6 8.5, 5.5 12 C 5.5 9, 8 6.5, 12 6.5 C 16 6.5, 18.5 9, 18.5 12 C 18 8.5, 15 5.5, 12 5.5 Z" fill="white" opacity="0.35"/>
-        <ellipse cx="9" cy="9" rx="2" ry="3" transform="rotate(-45 9 9)" fill="white" opacity="0.2"/>
-
-        <!-- Head -->
-        <path d="M8 6.5C8 4 9.5 2.5 12 2.5C14.5 2.5 16 4 16 6.5C16 7.5 15 8.5 12 8.5C9 8.5 8 7.5 8 6.5Z" fill="url(#headGradient)"/>
+        <!-- Legs (Right side) - Enhanced visibility -->
+        <g stroke="#666" stroke-width="1.5" stroke-linecap="round" fill="none" filter="url(#dropShadow)" style="filter: drop-shadow(0 0 2px rgba(6, 182, 212, 0.4));">
+            <!-- Front leg -->
+            <path d="M24 11 L27 9 L29 7"/>
+            <!-- Middle leg -->
+            <path d="M25 16 L28 16 L30 15"/>
+            <!-- Back leg -->
+            <path d="M24 21 L27 23 L29 25"/>
+        </g>
         
-        <!-- Eyes -->
-        <circle cx="10.2" cy="4.5" r="0.8" fill="#fff"/>
-        <circle cx="13.8" cy="4.5" r="0.8" fill="#fff"/>
+        <!-- Main body shell -->
+        <ellipse cx="16" cy="18" rx="11" ry="13" fill="url(#bodyGradient)" filter="url(#dropShadow)"/>
         
-        <!-- Pattern/Spots -->
-        <path d="M12 8.5V22.5" stroke="#220000" stroke-width="1.5" stroke-opacity="0.4"/>
-        <circle cx="9" cy="11" r="2" fill="#220000"/>
-        <circle cx="15" cy="11" r="2" fill="#220000"/>
-        <circle cx="7.5" cy="16" r="2.2" fill="#220000"/>
-        <circle cx="16.5" cy="16" r="2.2" fill="#220000"/>
-        <circle cx="12" cy="19.5" r="1.8" fill="#220000"/>
+        <!-- Wing split line -->
+        <path d="M16 8 L16 28" stroke="#4d0000" stroke-width="0.8" opacity="0.6"/>
+        
+        <!-- Left wing detail -->
+        <ellipse cx="11" cy="18" rx="5.5" ry="12.5" fill="url(#wingGradient)" opacity="0.3"/>
+        
+        <!-- Right wing detail -->
+        <ellipse cx="21" cy="18" rx="5.5" ry="12.5" fill="url(#wingGradient)" opacity="0.3"/>
+        
+        <!-- Detailed spots with gradient -->
+        <circle cx="11" cy="13" r="2.5" fill="url(#spotGradient)"/>
+        <circle cx="21" cy="13" r="2.5" fill="url(#spotGradient)"/>
+        <circle cx="9" cy="19" r="2.8" fill="url(#spotGradient)"/>
+        <circle cx="23" cy="19" r="2.8" fill="url(#spotGradient)"/>
+        <circle cx="11" cy="25" r="2.3" fill="url(#spotGradient)"/>
+        <circle cx="21" cy="25" r="2.3" fill="url(#spotGradient)"/>
+        
+        <!-- Multiple glossy highlights for realism -->
+        <ellipse cx="13" cy="12" rx="3" ry="5" fill="white" opacity="0.25" transform="rotate(-20 13 12)"/>
+        <ellipse cx="19" cy="12" rx="3" ry="5" fill="white" opacity="0.25" transform="rotate(20 19 12)"/>
+        <ellipse cx="11" cy="16" rx="2" ry="3" fill="white" opacity="0.15"/>
+        <circle cx="14" cy="11" r="1.5" fill="white" opacity="0.4"/>
+        
+        <!-- Head with gradient -->
+        <circle cx="16" cy="7.5" r="4.5" fill="url(#headGradient)" filter="url(#dropShadow)"/>
+        
+        <!-- Antennae with segments - Enhanced visibility -->
+        <g stroke="#888" stroke-width="1.2" stroke-linecap="round" fill="none" style="filter: drop-shadow(0 0 2px rgba(6, 182, 212, 0.5));">
+            <path d="M13 5.5 L11 3 L10 1.5"/>
+            <circle cx="10" cy="1.5" r="0.9" fill="#555" stroke="#06b6d4" stroke-width="0.3"/>
+            <path d="M19 5.5 L21 3 L22 1.5"/>
+            <circle cx="22" cy="1.5" r="0.9" fill="#555" stroke="#06b6d4" stroke-width="0.3"/>
+        </g>
+        
+        <!-- Eyes with shine -->
+        <g>
+            <circle cx="13.5" cy="7" r="1.2" fill="#000"/>
+            <circle cx="13.8" cy="6.7" r="0.4" fill="#fff" opacity="0.9"/>
+            <circle cx="18.5" cy="7" r="1.2" fill="#000"/>
+            <circle cx="18.8" cy="6.7" r="0.4" fill="#fff" opacity="0.9"/>
+        </g>
+        
+        <!-- Mandibles/mouth detail -->
+        <path d="M14.5 9 Q16 9.5 17.5 9" stroke="#000" stroke-width="0.5" fill="none"/>
     </svg>`;
 
 const renderHero = () => {
@@ -172,12 +227,6 @@ const renderCertificates = () => {
     <div class="cert-showcase-card reveal" style="transition-delay: ${index * 50}ms" data-cert-index="${index}">
       <div class="cert-image-wrapper">
         <img src="${cert.image}" alt="${cert.title}" loading="lazy">
-        <div class="cert-overlay">
-          <svg class="cert-view-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-        </div>
       </div>
       <div class="cert-showcase-content">
         <h3>${cert.title}</h3>
