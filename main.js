@@ -192,7 +192,7 @@ const renderProjects = () => {
 
   return `
     <section id="projects" class="container">
-      <h2 class="reveal">Selected Works</h2>
+      <h2 class="reveal">My Projects</h2>
       <div class="grid grid-2">
         ${projectCards}
       </div>
@@ -224,7 +224,7 @@ const renderSkills = () => {
 
 const renderCertificates = () => {
   const certCards = certifications.map((cert, index) => `
-    <div class="cert-showcase-card reveal" style="transition-delay: ${index * 50}ms" data-cert-index="${index}">
+    <div class="cert-showcase-card reveal" style="transition-delay: ${index * 30}ms" data-cert-index="${index}">
       <div class="cert-image-wrapper">
         <img src="${cert.image}" alt="${cert.title}" loading="lazy">
       </div>

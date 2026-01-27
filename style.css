@@ -768,6 +768,7 @@ nav {
     line-height: 1.8;
     color: #d4d4d4;
     margin-bottom: 1.25rem;
+    text-align: justify;
 }
 
 .bio-footer {
