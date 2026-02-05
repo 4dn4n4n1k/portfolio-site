@@ -28,22 +28,22 @@ export const profile = {
 
 export const projects = [
     {
-        title: "Cloud Security Architecture",
-        description: "Implemented a secure, compliant cloud infrastructure with automated threat monitoring for a fintech startup.",
-        tags: ["AWS", "DevSecOps", "Compliance"],
-        link: "#",
-        image: "https://placehold.co/600x400/1e293b/f59e0b?text=Cloud+Architecture"
+        title: "Vulnerability Intelligence Platform",
+        description: "Built a comprehensive backend platform for automated web attack surface discovery,<br>vulnerability detection with CVSS scoring, remediation lifecycle tracking,<br>and executive-grade security reporting with insights.",
+        tags: ["FastAPI", "PostgreSQL", "CVSS", "Vulnerability Management", "Security Reporting"],
+        link: "https://github.com/4dn4n4n1k/Vulnerability-Intelligence-platform",
+        image: "/images/vuln.png"
     },
     {
         title: "Malware Analysis Lab",
-        description: "Reverse engineering and behavioral analysis of a custom ransomware strain in an isolated sandbox.",
+        description: "Conducted reverse engineering and behavioral analysis of custom ransomware strains<br>within isolated sandbox environments using advanced tools.",
         tags: ["Malware Analysis", "Ghidra", "Assembly"],
         link: "#",
         image: "https://placehold.co/600x400/1e293b/22c55e?text=Malware+Sandbox"
     },
     {
         title: "Zero-Trust Network Design",
-        description: "Architecting a secure, zero-trust network infrastructure for a distributed cloud environment.",
+        description: "Architected enterprise-grade zero-trust network infrastructure for distributed cloud<br>environments with micro-segmentation and verification.",
         tags: ["Network Security", "Architecture", "Zero Trust"],
         link: "#",
         image: "https://placehold.co/600x400/1e293b/3b82f6?text=Network+Schema"

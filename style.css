@@ -299,6 +299,12 @@ section {
 
 /* Ultra-Premium Project Card */
 /* Ultra-Premium Project Card */
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .project-card {
     padding: 0;
     border-radius: var(--radius-md);
@@ -342,6 +348,25 @@ section {
     padding: 1.5rem;
     background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(10px);
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-content p {
+    max-width: 500px !important;
+    margin: 0.75rem auto 1.25rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+
+.project-content h3 {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    font-size: 1.6rem;
 }
 
 /* Extra Spacing for Expertise */
@@ -360,15 +385,25 @@ section {
     gap: 0.6rem;
     margin-top: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .tag {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-main);
-    padding: 0.25rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(6, 182, 212, 0.1);
+    color: #e0f2fe;
+    padding: 0.35rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    font-weight: 500;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
 }
 
 /* Skills Compact - Modern Pill Design */
