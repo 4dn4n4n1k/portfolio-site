@@ -20,7 +20,7 @@ export const profile = {
         Github: "https://github.com/4dn4n4n1k",
         Medium: "https://medium.com",
         Facebook: "https://facebook.com",
-        X: "https://twitter.com",
+        X: "https://x.com/adnananikTwT",
         Gmail: "mailto:adnananik301@gmail.com",
         Blog: "#"
     }
