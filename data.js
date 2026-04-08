@@ -6,7 +6,7 @@ export const profile = {
     about: "I bridge the gap between offensive security and robust engineering, creating systems that are secure by design.",
     bio: [
         "I started learning cybersecurity out of curiosity about how websites and systems can break. That curiosity has grown into a strong interest in finding vulnerabilities, understanding how attacks work, and learning how to secure applications properly.",
-        "I focus mainly on web application security, including common risks like those in the OWASP Top 10, along with basic network and penetration testing concepts. I enjoy working with labs, practice environments, and real-world scenarios to improve my skills. My goal is to grow as a cybersecurity professional and contribute to building safer, more secure systems on the web.",
+        "Recently, I’ve started exploring cloud technologies and learning how modern applications are built and secured in cloud environments. My goal is to grow into a cloud security-focused role, combining offensive security knowledge with secure system design.",
     ],
     stats: [
         { label: "Vulnerabilities Patched", value: "40+" },
@@ -18,7 +18,7 @@ export const profile = {
     email: "adnananik301@gmail.com",
     social: {
         Github: "https://github.com/4dn4n4n1k",
-        Medium: "https://medium.com",
+        LinkedIn: "https://www.linkedin.com/in/adnananik/",
         Facebook: "https://facebook.com",
         X: "https://x.com/adnananikTwT",
         Gmail: "mailto:adnananik301@gmail.com",
@@ -61,7 +61,7 @@ export const skills = [
     { name: "OSINT", level: 65 },
     { name: "OWASP Top 10", level: 80 },
     { name: "Cloud", level: 75 },
-    { name: "Apache", level: 70 },
+    { name: "AWS", level: 70 },
     { name: "Nginx", level: 70 },
     { name: "Docker", level: 75 },
 ];

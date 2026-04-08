@@ -67,8 +67,8 @@ h4 {
 }
 
 h1 {
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 1.1;
+    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+    line-height: 1.2;
     color: #e6e6e6;
     margin-bottom: 1.5rem;
 }
@@ -259,30 +259,22 @@ section {
 
 
 
-/* 3D Glowing Bug Icon */
-/* 3D Glowing Bug Icon */
-.bug-icon {
+/* 3D Glowing Cloud Icon */
+.cloud-icon {
     display: inline-block;
     vertical-align: middle;
-    width: 64px;
-    height: 64px;
-    margin: 0 4px;
-    animation: bugFloat 3s ease-in-out infinite;
+    animation: cloudFloat 3.5s ease-in-out infinite;
 }
 
-.bug-icon path {
-    fill: url(#bugGradient);
-}
-
-@keyframes bugFloat {
+@keyframes cloudFloat {
 
     0%,
     100% {
-        transform: translateY(0) rotate(45deg);
+        transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-3px) rotate(45deg);
+        transform: translateY(-8px);
     }
 }
 
@@ -374,8 +366,6 @@ section {
     margin-top: 8rem;
 }
 
-/* Floating View Button styles removed */
-
 .project-content {
     padding: 1.5rem;
 }
@@ -406,70 +396,253 @@ section {
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
 }
 
-/* Skills Compact - Modern Pill Design */
+/* ═══════════════════════════════════════════
+   EXPERTISE — Modern Skill Orb System
+   ═══════════════════════════════════════════ */
+
 #skills {
-    margin-top: 6rem;
+    margin-top: 4rem;
 }
 
-.skills-compact-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    padding: 2rem;
-    max-width: 800px;
-    margin: 2rem auto 0;
-
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-}
-
-.skills-subtitle {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    color: #fff;
-    text-align: center;
-}
-
-.skills-pill-container {
+/* Category Filter Tabs */
+.skill-tabs {
     display: flex;
+    gap: 0.75rem;
     flex-wrap: wrap;
-    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.skill-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+    letter-spacing: 0.02em;
+}
+
+.skill-tab:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.skill-tab.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.15));
+    border-color: rgba(6, 182, 212, 0.5);
+    color: #06b6d4;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Orb Grid */
+.skill-orb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual Skill Orb Card */
+.skill-orb {
+    position: relative;
+    border-radius: 20px;
+    padding: 1.75rem 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
+    cursor: default;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.12s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.skill-orb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(circle at 50% 0%, var(--accent-color, rgba(255,255,255,0.1)), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.skill-orb:hover {
+    border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
+    box-shadow:
+        0 8px 32px -8px rgba(0, 0, 0, 0.6),
+        0 0 0 1px color-mix(in srgb, var(--accent-color) 20%, transparent),
+        0 0 30px -10px var(--accent-color);
+    z-index: 5;
+}
+
+.skill-orb:hover::before {
+    opacity: 0.12;
+}
+
+/* Inner content */
+.skill-orb-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* SVG Ring Wrapper */
+.skill-orb-ring-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    max-width: 900px;
     margin: 0 auto;
 }
 
-.skill-pill {
+.skill-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+    overflow: visible;
+}
+
+.skill-ring-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.06);
+    stroke-width: 5;
+}
+
+.skill-ring-fill {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Icon in ring center */
+.skill-orb-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
-    border: 1px solid rgba(6, 182, 212, 0.3);
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    cursor: default;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    transition: transform 0.3s ease;
+    z-index: 3;
 }
 
-.skill-pill:hover {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.15));
-    border-color: rgba(6, 182, 212, 0.5);
-    transform: translateY(-3px);
+.skill-orb-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-.skill-name {
-    font-weight: 500;
-    color: #fff;
-    font-size: 0.95rem;
+.skill-orb:hover .skill-orb-icon {
+    transform: translate(-50%, -50%) scale(1.15);
 }
 
-.skill-level {
-    background: linear-gradient(135deg, #06b6d4, #3b82f6);
-    color: #000;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
+/* Percentage overlay */
+.skill-orb-percent {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+.skill-orb-percent span {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+/* Name label */
+.skill-orb-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e8e8e8;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+}
+
+/* Mastery badge */
+.skill-orb-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.9;
+}
+
+/* Ambient glow blob */
+.skill-orb-glow {
+    position: absolute;
+    inset: -20%;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+    filter: blur(20px);
+}
+
+.skill-orb:hover .skill-orb-glow {
+    opacity: 0.4;
+}
+
+/* Particle burst container */
+.skill-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Individual particle */
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    animation: particle-burst 0.6s ease-out forwards;
+}
+
+@keyframes particle-burst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--px), var(--py)) scale(0);
+        opacity: 0;
+    }
 }
 
 /* Cert Card Hover Polish */
@@ -728,7 +901,7 @@ nav {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
-    background: linear-gradient(90deg, #06b6d4, #3b82f6);
+    background: linear-gradient(90deg, #ffb733, #ffd147);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -918,6 +1091,35 @@ nav {
     /* Adjust Skills margin for mobile */
     #skills {
         margin-top: 3rem;
+    }
+
+    /* Compact skill orb grid on mobile */
+    .skill-orb-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+
+    .skill-orb {
+        padding: 1.25rem 0.75rem 1rem;
+    }
+
+    .skill-orb-ring-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+
+    .skill-ring {
+        width: 90px;
+        height: 90px;
+    }
+
+    .skill-tabs {
+        gap: 0.5rem;
+    }
+
+    .skill-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
     }
 }
 
