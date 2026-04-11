@@ -339,8 +339,8 @@ const renderSkills = () => {
 const renderCertificates = () => {
   const issuerAccents = {
     'Amazon Web Services':  { color: '#f90', glyph: 'AWS' },
-    'EC-Council':           { color: '#e11d48', glyph: 'EC' },
-    'Cybrary':              { color: '#06b6d4', glyph: 'CY' },
+    'EC-Council':           { color: '#e11d48', glyph: 'EC-Council' },
+    'Cybrary':              { color: '#06b6d4', glyph: 'Cybrary' },
     'Cybersecurity and Infrastructure Security Agency': { color: '#7c3aed', glyph: 'CISA' },
     'Cisco Networking Academy': { color: '#1d6fa4', glyph: 'CISCO' },
   };
