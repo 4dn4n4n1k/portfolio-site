@@ -71,51 +71,51 @@ export const certifications = [
     {
         title: "AWS Certified Cloud Practitioner",
         issuer: "Amazon Web Services",
-        image: "/certificates/AWS Cloud Practitioner.png"
+        image: "/certificates/AWS Cloud Practitioner.webp"
     },
     {
         title: "Ethical Hacking Essentials",
         issuer: "EC-Council",
-        image: "/certificates/EC Council_Ethical Hacking Essentials.png"
+        image: "/certificates/EC Council_Ethical Hacking Essentials.webp"
     },
     {
         title: "Open Source Intelligence",
         issuer: "EC-Council",
-        image: "/certificates/EC Council OSINT.png"
+        image: "/certificates/EC Council OSINT.webp"
     },
     {
         title: "Web Application Hacking",
         issuer: "Cybrary",
-        image: "/certificates/CYBRARY_WEBHacking.png"
+        image: "/certificates/CYBRARY_WEBHacking.webp"
     },
     {
         title: "Wireless Network Hacking",
         issuer: "Cybrary",
-        image: "/certificates/CYBRARY_WirelessHacking.png"
+        image: "/certificates/CYBRARY_WirelessHacking.webp"
     },
     {
         title: "System Hacking Phases and Attck Techniques",
         issuer: "Cybrary",
-        image: "/certificates/Cybrary_Systemhacking.png"
+        image: "/certificates/Cybrary_Systemhacking.webp"
     },
     {
         title: "Reconnaissance Techniques",
         issuer: "Cybrary",
-        image: "/certificates/Cybrary_Recon.png"
+        image: "/certificates/Cybrary_Recon.webp"
     },
     {
         title: "OSINT",
         issuer: "Cybrary",
-        image: "/certificates/Cybrary_OSINT.png"
+        image: "/certificates/Cybrary_OSINT.webp"
     },
     {
         title: "Cybersecurity Consequences",
         issuer: "Cybersecurity and Infrastructure Security Agency",
-        image: "/certificates/Cybersecurity Consequences.png"
+        image: "/certificates/Cybersecurity Consequences.webp"
     },
     {
         title: "Introduction to Cybersecurity",
         issuer: "Cisco Networking Academy",
-        image: "/certificates/CISCO.png"
+        image: "/certificates/CISCO.webp"
     }
 ];
