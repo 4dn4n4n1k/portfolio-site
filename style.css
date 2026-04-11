@@ -67,14 +67,14 @@ h4 {
 }
 
 h1 {
-    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
-    line-height: 1.2;
+    font-size: clamp(1.8rem, 6vw, 3.8rem);
+    line-height: 1.15;
     color: #e6e6e6;
     margin-bottom: 1.5rem;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     margin-bottom: var(--spacing-lg);
     display: inline-block;
     font-weight: 700;
@@ -695,6 +695,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 .logo {
@@ -1029,71 +1030,136 @@ nav {
     z-index: 1;
 }
 
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE — Same format,
+   proportionally scaled down.
+   ═══════════════════════════════════ */
 @media (max-width: 768px) {
+
+    /* --- Navigation: keep visible, single row --- */
+    nav {
+        padding: 0.75rem 0;
+    }
+
+    .nav-content {
+        gap: 0.5rem;
+        overflow: hidden;
+    }
+
+    .logo {
+        font-size: 0.85rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
     .nav-links {
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        /* allow scroll if needed */
+        scrollbar-width: none;
+        /* hide scrollbar Firefox */
+        -ms-overflow-style: none;
+        /* hide scrollbar IE */
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .nav-links::-webkit-scrollbar {
         display: none;
     }
 
-    h1 {
-        font-size: 2.4rem;
-        /* Slightly smaller */
-        margin-bottom: 0.25rem;
-        /* Ultra tight */
-        line-height: 1.05;
+    .nav-links a {
+        margin-left: 0.7rem;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
-    h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+    /* --- Container padding --- */
+    .container {
+        padding: 0 1rem;
     }
 
-    p {
-        font-size: 0.95rem;
+    /* --- Section spacing --- */
+    section {
+        padding: 3.5rem 0;
     }
 
+    /* --- Hero --- */
     .hero-tagline {
-        margin-bottom: 0.25rem;
-        /* Ultra tight */
+        font-size: 0.75rem;
+        margin-bottom: 0.75rem;
     }
 
     .hero-desc {
+        font-size: 0.9rem;
         margin-bottom: 1.5rem;
-        /* Reduced from 2rem */
     }
 
     .hero-btn {
-        margin-top: 1rem;
-        /* Further reduced from 1.5rem */
-        padding: 0.8rem 2rem;
+        padding: 0.75rem 1.75rem;
+        font-size: 0.875rem;
     }
 
-    section {
-        padding: 1.5rem 0;
+    .hero-buttons {
+        gap: 0.75rem;
+        margin-top: 1.5rem;
     }
 
-    .skills-subtitle {
-        margin-bottom: 1.5rem;
+    /* Scale down the cloud SVG icon in hero */
+    .cloud-icon {
+        width: 50px !important;
+        height: 50px !important;
     }
 
-    /* Compact Footer for Mobile */
-    .footer {
-        padding: 3rem 0 1.5rem;
+    /* --- Section headings --- */
+    section h2 {
+        margin-bottom: 2rem;
     }
 
-    .footer-title {
-        font-size: 1.25rem;
+    /* --- About section --- */
+    .profile-img-wrapper {
+        width: 120px;
+        height: 120px;
     }
 
-    .grid-2 {
-        grid-template-columns: 1fr;
+    .profile-name {
+        font-size: 1.3rem;
     }
 
-    /* Adjust Skills margin for mobile */
+    .profile-role {
+        font-size: 0.875rem;
+    }
+
+    .bio-text {
+        font-size: 0.875rem;
+    }
+
+    /* --- Projects --- */
+    .project-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-content p {
+        font-size: 0.875rem;
+    }
+
+    /* --- Skills --- */
     #skills {
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
 
-    /* Compact skill orb grid on mobile */
+    .skill-tabs {
+        gap: 0.4rem;
+    }
+
+    .skill-tab {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.75rem;
+    }
+
     .skill-orb-grid {
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
         gap: 1rem;
@@ -1113,13 +1179,40 @@ nav {
         height: 90px;
     }
 
-    .skill-tabs {
-        gap: 0.5rem;
+    .skill-orb-label {
+        font-size: 0.8rem;
     }
 
-    .skill-tab {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+    /* --- Certificates --- */
+    #certificates {
+        margin-top: 2rem;
+    }
+
+    /* --- Footer --- */
+    .footer {
+        padding: 3rem 0 1.5rem;
+    }
+
+    .footer-copy {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        text-align: center !important;
+        padding: 0 1rem !important;
+        justify-content: center !important;
+    }
+
+    .footer-copy span {
+        width: 100%;
+        justify-content: center !important;
+    }
+
+    .status-dot {
+        display: none !important;
+    }
+
+    .social-btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.875rem;
     }
 }
 

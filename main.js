@@ -337,22 +337,44 @@ const renderSkills = () => {
 };
 
 const renderCertificates = () => {
-  const certCards = certifications.map((cert, index) => `
-    <div class="cert-showcase-card reveal" style="transition-delay: ${index * 30}ms" data-cert-index="${index}">
-      <div class="cert-image-wrapper">
+  const issuerAccents = {
+    'Amazon Web Services':  { color: '#f90', glyph: 'AWS' },
+    'EC-Council':           { color: '#e11d48', glyph: 'EC' },
+    'Cybrary':              { color: '#06b6d4', glyph: 'CY' },
+    'Cybersecurity and Infrastructure Security Agency': { color: '#7c3aed', glyph: 'CISA' },
+    'Cisco Networking Academy': { color: '#1d6fa4', glyph: 'CISCO' },
+  };
+
+  const certCards = certifications.map((cert, index) => {
+    const accent = issuerAccents[cert.issuer] || { color: '#06b6d4', glyph: '??' };
+    return `
+    <div class="cert-card-modern reveal" style="transition-delay: ${index * 40}ms; --accent: ${accent.color};" data-cert-index="${index}">
+      <!-- Number badge -->
+      <span class="cert-num">${String(index + 1).padStart(2, '0')}</span>
+
+      <!-- Thumbnail -->
+      <div class="cert-thumb">
         <img src="${cert.image}" alt="${cert.title}" loading="lazy">
+        <div class="cert-thumb-overlay">
+          <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14L20 4M9 21H3V15"/></svg>
+        </div>
       </div>
-      <div class="cert-showcase-content">
-        <h3>${cert.title}</h3>
-        <p class="cert-issuer">${cert.issuer}</p>
+
+      <!-- Info -->
+      <div class="cert-info">
+        <span class="cert-issuer-badge" style="background: ${accent.color}22; color: ${accent.color}; border-color: ${accent.color}44;">${accent.glyph}</span>
+        <h3 class="cert-title">${cert.title}</h3>
+        <p class="cert-org">${cert.issuer}</p>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
+
 
   return `
     <section id="certificates" class="container">
       <h2 class="reveal">Certifications</h2>
-      <div class="cert-showcase-grid">
+      <div class="cert-modern-grid">
         ${certCards}
       </div>
     </section>
@@ -592,7 +614,7 @@ const render = () => {
     const closeBtn = document.querySelector('.cert-modal-close');
     const backdrop = document.querySelector('.cert-modal-backdrop');
 
-    document.querySelectorAll('.cert-showcase-card').forEach(card => {
+    document.querySelectorAll('.cert-card-modern').forEach(card => {
       card.addEventListener('click', () => {
         const index = parseInt(card.dataset.certIndex);
         const cert = certifications[index];
