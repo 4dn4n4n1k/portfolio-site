@@ -24,10 +24,10 @@ export const initBinaryBackground = () => {
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     // Particle Configuration
-    const particleCount = 2000; // Scatter amount
+    const particleCount = 1000; // Reduced for performance
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3); // For movement

@@ -290,7 +290,7 @@ const renderSkills = () => {
     return `
       <div class="skill-orb reveal" 
            data-category="${skill.category}" 
-           style="--accent-color: ${skill.color}; --ring-offset: ${circumference}; --ring-target: ${offset}; transition-delay: ${index * 60}ms;"
+           style="--accent-color: ${skill.color}; --ring-offset: ${circumference}; --ring-target: ${offset}; transition-delay: ${index * 30}ms;"
            data-target-offset="${offset}">
         <div class="skill-orb-inner">
           <div class="skill-orb-ring-wrapper">
@@ -326,7 +326,7 @@ const renderSkills = () => {
     <section id="skills" class="container">
       <h2 class="reveal">Expertise</h2>
 
-      <div class="skill-tabs reveal" style="transition-delay: 150ms;">
+      <div class="skill-tabs reveal" style="transition-delay: 50ms;">
         ${tabs}
       </div>
       <div class="skill-orb-grid" id="skillGrid">
@@ -348,7 +348,7 @@ const renderCertificates = () => {
   const certCards = certifications.map((cert, index) => {
     const accent = issuerAccents[cert.issuer] || { color: '#06b6d4', glyph: '??' };
     return `
-    <div class="cert-card-modern reveal" style="transition-delay: ${index * 40}ms; --accent: ${accent.color};" data-cert-index="${index}">
+    <div class="cert-card-modern reveal" style="transition-delay: ${index * 20}ms; --accent: ${accent.color};" data-cert-index="${index}">
       <!-- Number badge -->
       <span class="cert-num">${String(index + 1).padStart(2, '0')}</span>
 
@@ -451,19 +451,37 @@ const initGlobalListeners = () => {
 
   // Smart Navbar Logic with debouncing
   const nav = document.querySelector('nav');
+  const scrollBtn = document.getElementById('scrollToTop');
   let scrollTimeout;
 
   window.addEventListener('scroll', () => {
     if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
     scrollTimeout = requestAnimationFrame(() => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Nav rules
       if (scrollTop > 20) {
         nav.classList.add('nav-hidden');
       } else {
         nav.classList.remove('nav-hidden');
       }
+
+      // Scroll To Top rules
+      if (scrollBtn) {
+        if (scrollTop > 500) {
+          scrollBtn.classList.add('visible');
+        } else {
+          scrollBtn.classList.remove('visible');
+        }
+      }
     });
   });
+
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // ESC key listener for modal (global)
   document.addEventListener('keydown', (e) => {
@@ -590,21 +608,7 @@ const render = () => {
       }
     }
 
-    // Scroll To Top Logic
-    const scrollBtn = document.getElementById('scrollToTop');
-    if (scrollBtn) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-          scrollBtn.classList.add('visible');
-        } else {
-          scrollBtn.classList.remove('visible');
-        }
-      });
-
-      scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+    // Scroll event logic merged into initGlobalListeners() for performance
 
     // Certificate Modal Logic
     const modal = document.getElementById('cert-modal');
@@ -637,22 +641,24 @@ const render = () => {
     backdrop.addEventListener('click', closeModal);
   }, 100);
 
-  // Fetch and display visitor IP
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      const ipElement = document.querySelector('#visitor-ip .ip-loading');
-      if (ipElement) {
-        ipElement.textContent = data.ip;
-      }
-    })
-    .catch(error => {
-      console.error('Failed to fetch IP:', error);
-      const ipElement = document.querySelector('#visitor-ip .ip-loading');
-      if (ipElement) {
-        ipElement.textContent = 'Hidden';
-      }
-    });
+  // Defer fetching visitor IP so it does not block initial layout parsing
+  setTimeout(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        const ipElement = document.querySelector('#visitor-ip .ip-loading');
+        if (ipElement) {
+          ipElement.textContent = data.ip;
+        }
+      })
+      .catch(error => {
+        console.error('Failed to fetch IP:', error);
+        const ipElement = document.querySelector('#visitor-ip .ip-loading');
+        if (ipElement) {
+          ipElement.textContent = 'Hidden';
+        }
+      });
+  }, 1000);
 
   // Initialize global event listeners
   initGlobalListeners();
