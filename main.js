@@ -177,6 +177,52 @@ const renderSkills = () => {
             fill="#323330">JS</text>
     </svg>`,
 
+    csharp: `<svg viewBox="0 0 128 128" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="csG1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#9B4F96"/>
+          <stop offset="100%" stop-color="#68217A"/>
+        </linearGradient>
+        <linearGradient id="csG2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#CF8EF4"/>
+          <stop offset="100%" stop-color="#9B4F96"/>
+        </linearGradient>
+      </defs>
+      <!-- Diamond / hexagon shield -->
+      <path d="M64 4 L117 33 L117 95 L64 124 L11 95 L11 33 Z" fill="url(#csG1)"/>
+      <!-- Inner highlight -->
+      <path d="M64 12 L109 37 L109 91 L64 116 L19 91 L19 37 Z" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <!-- C letter arc -->
+      <path d="M62 42 C48 42 38 52 38 64 C38 76 48 86 62 86 C68 86 73 84 77 80" fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/>
+      <!-- # hash - vertical bars -->
+      <line x1="91" y1="50" x2="87" y2="78" stroke="white" stroke-width="5" stroke-linecap="round"/>
+      <line x1="102" y1="50" x2="98" y2="78" stroke="white" stroke-width="5" stroke-linecap="round"/>
+      <!-- # hash - horizontal bars -->
+      <line x1="85" y1="60" x2="104" y2="60" stroke="white" stroke-width="5" stroke-linecap="round"/>
+      <line x1="83" y1="70" x2="102" y2="70" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    </svg>`,
+
+    cpp: `<svg viewBox="0 0 128 128" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cppG" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#659BD3"/>
+          <stop offset="100%" stop-color="#00599C"/>
+        </linearGradient>
+      </defs>
+      <!-- Hexagon shield -->
+      <path d="M64 4 L117 33 L117 95 L64 124 L11 95 L11 33 Z" fill="url(#cppG)"/>
+      <!-- Inner border highlight -->
+      <path d="M64 12 L109 37 L109 91 L64 116 L19 91 L19 37 Z" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <!-- C arc -->
+      <path d="M46 44 C35 44 26 53 26 64 C26 75 35 84 46 84 C51 84 55 82 58 78" fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/>
+      <!-- First + -->
+      <line x1="74" y1="51" x2="74" y2="77" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <line x1="61" y1="64" x2="87" y2="64" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <!-- Second + -->
+      <line x1="100" y1="51" x2="100" y2="77" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <line x1="87" y1="64" x2="113" y2="64" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    </svg>`,
+
     sql: `<svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="12" cy="6" rx="8" ry="3" fill="#06b6d4" opacity=".9"/>
       <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#06b6d4" stroke-width="1.5" fill="none"/>
@@ -270,6 +316,8 @@ const renderSkills = () => {
   const skillData = [
     { name: 'Python', level: 90, category: 'languages', color: '#3b82f6', icon: icons.python, desc: 'Expert' },
     { name: 'JavaScript', level: 85, category: 'languages', color: '#f59e0b', icon: icons.javascript, desc: 'Advanced' },
+    { name: 'C#', level: 90, category: 'languages', color: '#c77dff', icon: icons.csharp, desc: 'Expert' },
+    { name: 'C++', level: 85, category: 'languages', color: '#60a5fa', icon: icons.cpp, desc: 'Advanced' },
     { name: 'SQL', level: 85, category: 'languages', color: '#06b6d4', icon: icons.sql, desc: 'Advanced' },
     { name: 'Linux', level: 80, category: 'infrastructure', color: '#10b981', icon: icons.linux, desc: 'Proficient' },
     { name: 'Networking', level: 75, category: 'security', color: '#8b5cf6', icon: icons.networking, desc: 'Proficient' },
@@ -338,9 +386,9 @@ const renderSkills = () => {
 
 const renderCertificates = () => {
   const issuerAccents = {
-    'Amazon Web Services':  { color: '#f90', glyph: 'AWS' },
-    'EC-Council':           { color: '#e11d48', glyph: 'EC-Council' },
-    'Cybrary':              { color: '#06b6d4', glyph: 'Cybrary' },
+    'Amazon Web Services': { color: '#f90', glyph: 'AWS' },
+    'EC-Council': { color: '#e11d48', glyph: 'EC-Council' },
+    'Cybrary': { color: '#06b6d4', glyph: 'Cybrary' },
     'Cybersecurity and Infrastructure Security Agency': { color: '#7c3aed', glyph: 'CISA' },
     'Cisco Networking Academy': { color: '#1d6fa4', glyph: 'CISCO' },
   };
@@ -458,7 +506,7 @@ const initGlobalListeners = () => {
     if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
     scrollTimeout = requestAnimationFrame(() => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
+
       // Nav rules
       if (scrollTop > 20) {
         nav.classList.add('nav-hidden');
