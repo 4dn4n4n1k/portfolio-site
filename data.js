@@ -35,11 +35,11 @@ export const projects = [
         image: "/images/vuln.png"
     },
     {
-        title: "Malware Analysis Lab",
-        description: "Conducted reverse engineering and behavioral analysis of custom ransomware strains<br>within isolated sandbox environments using advanced tools.",
-        tags: ["Malware Analysis", "Ghidra", "Assembly"],
-        link: "#",
-        image: "https://placehold.co/600x400/1e293b/22c55e?text=Malware+Sandbox"
+        title: "Dark Market Simulator: Web Exploitation Lab",
+        description: "A deliberately vulnerable web application designed to simulate a darknet-style marketplace, allowing hands-on practice of real-world web exploitation techniques such as SQL injection, cross-site scripting (XSS), and authentication bypass within a controlled and ethical environment.",
+        tags: ["Web Application Security", "Vulnerability", "Ethical Hacking", "OWASP"],
+        link: "https://github.com/4dn4n4n1k/darkmarket-vuln-lab",
+        image: "/images/darkmarket.png"
     },
     {
         title: "Zero-Trust Network Design",
